@@ -10,7 +10,7 @@ Not a signal bot.
 Not a black-box trading system.
 Not a generic momentum scanner with prettier language.
 
-The idea is to help traders build, retrieve, evaluate, and refine their own market context.
+The idea is to help traders build, retrieve, evaluate, and refine their own market context and the smaller playbooks that live inside it.
 
 In plain English, the product should help a trader answer questions like:
 - What kind of day is this shaping up to be?
@@ -35,7 +35,7 @@ This repo exists to turn that process into product.
 
 ## Product direction
 
-The working direction is an AI-assisted Pattern Bridge Discovery Engine.
+The working direction is an AI-assisted Pattern Bridge system, with Pattern Bridge as the higher-order context framework and playbooks as the smaller executable pattern layer.
 
 That means a system that can:
 - surface potential pattern bridges for trader review

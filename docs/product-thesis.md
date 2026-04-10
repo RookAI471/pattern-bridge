@@ -51,7 +51,7 @@ A product that strengthens this loop can create real value without needing to im
 
 ## Product idea
 
-Build a Pattern Bridge Discovery Engine.
+Build a Pattern Bridge system that helps traders construct context and develop playbooks.
 
 The engine should help a trader:
 - discover likely pattern bridges in current conditions
@@ -63,8 +63,8 @@ The engine should help a trader:
 
 ## What a pattern bridge means here
 
-A pattern bridge is not just a setup name.
-It is a structured connection between:
+A pattern bridge is not just a setup name, and it is not the same thing as a playbook.
+It is the higher-order structured connection between:
 - preceding regime/context
 - structural conditions
 - participation conditions
@@ -183,3 +183,13 @@ People who want a shared framework for reviewing examples, building playbooks, a
 
 If this works, the value will not come from giving traders a robot.
 It will come from giving them a better way to build, retrieve, test, and evolve their own context.
+
+
+## Important ontology note
+
+Pattern Bridge and playbook should remain separate concepts.
+
+- Pattern Bridge = the higher-order framework that links context, structure, participation, execution logic, and debrief refinement
+- Playbook = a smaller executable pattern or tactic that may live inside that broader framework
+
+The product should support both layers without collapsing them into one object.
