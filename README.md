@@ -1,97 +1,133 @@
 # Pattern Bridge
 
-AI-assisted context building and pattern bridge discovery for traders.
+Pattern Bridge is an AI-assisted research project for **ES weekly context and analog matching**.
+
+Current focus:
+- **ES only**
+- **weekly event archetypes**
+- especially **FOMC**, **FOMC + NFP**, and related event weeks
+- proving whether AI can compare weeks based on the **important weekly meta**, not just labels or visual resemblance
 
 ## What this is
 
-Pattern Bridge is an attempt to build a better tool for discretionary traders.
+This repo is no longer centered on building a broad ontology of generic pattern bridges.
 
-Not a signal bot.
-Not a black-box trading system.
-Not a generic momentum scanner with prettier language.
+The current job is narrower and more honest:
+- reconstruct known canonical ES weeks from machine-legal inputs
+- represent the weekly meta that actually matters
+- test whether similar weeks can be detected without cheating
+- validate that with human-graded placebo weeks before claiming anything real
 
-The idea is to help traders build, retrieve, evaluate, and refine their own market context and the smaller playbooks that live inside it.
+In plain English, the product direction is:
+- help a trader remember the important higher-timeframe context
+- compare the current week to prior event weeks that actually matter
+- identify what is structurally important versus cosmetic noise
+- support regime/context review, not fake-precision execution
 
-In plain English, the product should help a trader answer questions like:
-- What kind of day is this shaping up to be?
-- What similar situations have I seen before?
-- Which names or markets look structurally similar to a known pattern bridge?
-- What would confirm the idea?
-- What would invalidate it?
-- What should I debrief and fold back into the playbook afterward?
+## What we are trying to prove
 
-## Core thesis
+The core research question is:
 
-The durable edge is not a fixed setup library.
-It is a process for:
-- framing macro and event context
-- mapping higher-timeframe structure
-- questioning profile and participation
-- identifying executable intraday behavior
-- logging reality in real time
-- debriefing to refine, split, or retire patterns
+> Can AI distinguish a genuinely similar ES event week from a superficially similar one, using the right higher-timeframe context and weekly logic?
 
-This repo exists to turn that process into product.
+That means proving, in order:
+1. a canonical real week can be reconstructed from actual intraday data
+2. the important weekly meta can be represented explicitly
+3. positive and negative placebo weeks can be human-graded honestly
+4. AI can later pass or fail those weeks for the right reasons
 
-## Product direction
+## Current reference weeks
 
-The working direction is an AI-assisted Pattern Bridge system, with Pattern Bridge as the higher-order context framework and playbooks as the smaller executable pattern layer.
+Primary canonical week:
+- **Week ending 2022-01-07**
 
-That means a system that can:
-- surface potential pattern bridges for trader review
-- retrieve similar prior examples and analogs
-- help structure premarket context and scenario trees
-- support journaling and debrief workflows
-- extract playbooks from notes, examples, and review
-- improve over time from accepted and rejected candidate bridges
+Secondary seed / contrast week:
+- **Week ending 2022-02-11**
 
-## What the product should do
+Locked ranked key events for the canonical Jan 7 week:
+1. Tuesday bikini failure at the multi week range high
+2. Wednesday FOMC Min inverse P liq
+3. Friday NFP bikini chop at poor TPOL
 
-- help traders ask better questions
-- reduce the documentation burden
-- surface candidate bridges instead of forcing manual hunting
-- preserve trader judgment instead of pretending to replace it
-- support adaptive playbooks rather than static rules
+## Key modeling rules
 
-## What the product should not do
+- **Daily bars are not enough** for honest validation.
+- Use **ES intraday 30-minute data** as the primary substrate.
+- Do not assume discretionary labels are automatically machine-definable.
+- Start with **Market Profile / price structure first**, labels second.
+- Preserve Edward's exact term meanings.
+- Do not conflate:
+  - `2022-01-04` = `bikini_failure`
+  - `2022-01-07` = `true_bikini`
+- The value is in **weekly meta and controlling context**, not recreating every handwritten chart note mechanically.
 
-- pretend to know the future
-- act like an auto-trader
-- collapse into generic stock scanning
-- fake precision around execution timing
-- remove the trader from the loop
+## Current repo structure
 
-## Why this may matter
+### Core docs
+- `docs/es-weekly-event-archetypes.md`
+- `docs/es-weekly-archetype-schema-v0.md`
+- `docs/weekly-meta-playbook-schema.md`
+- `docs/weekly-meta-playbook-2022-01-07.md`
+- `docs/canonical-week-reconstruction-test.md`
+- `docs/jan-7-2022-single-week-reconstruction-spec.md`
+- `docs/jan-7-2022-raw-machine-reconstruction.md`
+- `docs/jan-7-2022-label-precision-notes.md`
+- `docs/minimal-market-profile-spec.md`
+- `docs/placebo-week-validation-framework.md`
+- `docs/placebo-week-pack-v0.md`
+- `docs/placebo-week-viewing-notes.md`
+- `docs/data-sources.md`
 
-Most traders do not document deeply.
-Most traders do not build rich debrief loops.
-Most traders do not have strong recall across prior contexts, failed ideas, and playbook variants.
-
-If software can surface likely bridges, relevant analogs, and useful questions at the right time, that is real leverage.
-
-## Initial repo goals
-
-1. define the product thesis clearly
-2. define the minimum viable Pattern Bridge schema
-3. design the discovery and review workflow
-4. decide how futures and stocks fit into the roadmap
-5. build an issue tree that supports disciplined exploration
+### Data and scripts
+- `data/market-data/es_30m_continuous.csv`
+- `data/placebos/`
+- `scripts/build_price_profile.py`
+- `scripts/evaluate_profile_features.py`
 
 ## Current status
 
-Early product exploration.
+Current status is no longer “broad product exploration.”
 
-See the issue tracker for the initial shaping work:
-- product thesis and positioning
-- schema definition
-- discovery workflow
-- market wedge evaluation
-- v0 issue mapping
+It is:
+- **narrow ES weekly-context validation**
+- **real-data reconstruction first**
+- **placebo validation second**
+- **AI grading only after human grading**
 
-## Repository principles
+Recent progress:
+- canonical Jan 7 week documented more precisely
+- weekly meta object defined
+- placebo validation framework written
+- first placebo pack created
+- multi-week context viewer served through the Track B lane for human review
+- profile-feature detector started, but still crude and in need of tightening
 
-- clarity over hype
-- judgment support over automation theater
-- context over prediction
-- adaptive playbooks over rigid systems
-- durable workflow over clever demos
+## Immediate next steps
+
+1. clean up the viewer UX so the evaluation week is obvious
+2. human-grade the placebo pack
+3. test AI pass/fail reasoning against those grades
+4. tighten the profile / Market Profile detector logic
+5. expand to the Feb 11, 2022 contrast week only after Jan 7 logic is grounded
+
+## Anti-goals
+
+Do not drift into:
+- generic scanner product language
+- auto-trading theater
+- ladder-reading AI fantasies
+- broad stock-market scope too early
+- assuming archetypes are real before validation
+- pretending weak labels are already machine-ready
+
+## Repo principle
+
+Be narrower and more empirical than feels exciting.
+
+If a weekly archetype cannot survive:
+- real-data reconstruction
+- placebo testing
+- human grading
+- and honest comparison
+
+then it is not real enough yet.

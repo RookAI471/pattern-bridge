@@ -2,202 +2,159 @@
 
 ## Purpose
 
-This document sequences the early work for Pattern Bridge into a practical v0 roadmap.
+This roadmap reflects the current, narrower Pattern Bridge direction.
 
-The goal is not to over-plan.
-The goal is to make sure the next work reduces ambiguity in the right order.
+The goal is not to build a broad bridge library first.
+The goal is to prove that **ES weekly event analogs** can be represented and validated honestly.
 
-## Guiding rule
+## Current guiding rule
 
-Do not start by building a broad scanner.
+Do not assume a weekly archetype is real because the label feels intuitive.
+
 Start by proving that the product can:
-- represent bridges well
-- retrieve useful analogs
-- support trader review
-- improve through debrief
+- reconstruct a known canonical week from actual intraday data
+- represent the important weekly meta explicitly
+- separate controlling context from cosmetic variation
+- distinguish true analogs from false lookalikes
 
 ## v0 definition
 
-Pattern Bridge v0 should prove the core loop:
-- context
-- candidate bridge
-- analog retrieval
-- trader judgment
-- debrief
-- memory improvement
+Pattern Bridge v0 should prove this loop:
+- real intraday data
+- canonical week reconstruction
+- explicit weekly-meta object
+- placebo weeks
+- human grading
+- later AI grading against those human judgments
 
-## Phase 0: foundation
+## Phase 0: scope reset and source grounding
 
 ### Goal
-Lock the product frame so implementation does not drift.
+Lock the project to the real wedge and stop ontology drift.
 
 ### Deliverables
-- README
-- product thesis
-- schema
-- workflow
-- market wedge
-- personas
-- screen map
-- MVP doc
+- rewritten README
+- ES-only weekly-archetype framing
+- data-sources doc
+- canonical week spec for Jan 7, 2022
+- weekly-meta schema
+- placebo validation framework
 
 ### Exit condition
-Repo clearly explains the product and early scope.
+The repo clearly explains that the active project is ES weekly-context validation, not generic pattern-library expansion.
 
-Status: largely complete.
+Status: complete enough to proceed.
 
 ---
 
-## Phase 1: ontology and bridge memory
+## Phase 1: canonical week reconstruction
 
 ### Goal
-Create the first usable bridge library and memory model.
+Prove one real week can be reconstructed from machine-legal inputs before making bigger claims.
+
+### Current anchor
+- week ending `2022-01-07`
 
 ### Work
-- finalize minimum bridge schema
-- define bridge family / variant relationships
-- create a starter bridge set manually
-- define evidence linking approach
-- define failure-case representation
-
-### Suggested outputs
-- 5 to 10 canonical bridge objects
-- 2 to 3 examples each where possible
-- at least some failed lookalikes documented
-
-### Why this phase matters
-If the bridge objects are weak, the whole product becomes vague.
+- normalize real ES 30-minute data
+- reconstruct the canonical week in machine-readable form
+- document the important weekly events and opportunity ranking
+- separate profile geometry from subjective shorthand
 
 ### Exit condition
-A user can browse a small but coherent bridge library and understand what each bridge is, when it belongs, and what it should not be confused with.
+A grounded observer can inspect the real week and agree that the canonical object is anchored to actual data, not just language.
+
+Status: materially underway.
 
 ---
 
-## Phase 2: analog retrieval
+## Phase 2: minimum market-profile / structure layer
 
 ### Goal
-Prove that the product can surface useful related examples.
+Create the smallest useful price-based structure layer needed for weekly comparison.
 
 ### Work
-- define similarity dimensions
-- implement simple retrieval logic
-- connect examples to bridges
-- expose closest matches and false lookalikes
-- test retrieval quality on a narrow set of cases
-
-### Why this phase matters
-Analog retrieval is one of the core sources of value.
-If retrieval is weak, candidate surfacing will feel generic.
+- build minimal profile representations from price data
+- detect simple geometry and weakness/strength clues
+- avoid pretending branded labels are already solved
+- tighten detector logic for tails, center width, repetition, and sequence
 
 ### Exit condition
-Given a bridge or candidate, the product can show examples that traders consistently judge as relevant enough to inspect.
+The system can represent enough structure to support honest comparison without overselling fuzzy labels.
+
+Status: started, still crude.
 
 ---
 
-## Phase 3: candidate discovery workflow
+## Phase 3: placebo validation
 
 ### Goal
-Surface candidate bridges for trader evaluation.
+Test whether the weekly meta is actually discriminative.
 
 ### Work
-- define candidate object
-- define candidate states
-- implement candidate review actions
-- attach bridge explanations
-- show what matches and what is missing
-
-### Suggested scope
-Keep the universe narrow at first.
-Do not try to scan everything.
+- create positive and negative placebo weeks
+- ensure each placebo includes the proper prior multi-week context
+- have Edward grade each placebo first
+- only then test AI pass/fail reasoning
 
 ### Exit condition
-A trader can see candidate bridges, understand why they surfaced, and accept/reject/watch them with minimal friction.
+Humans can consistently explain why each placebo passes or fails, and the AI can later be measured against that standard.
+
+Status: framework and initial pack created, human grading still pending.
 
 ---
 
-## Phase 4: journal and debrief loop
+## Phase 4: analog detection test
 
 ### Goal
-Make the product compound over time.
+See whether the weekly-meta object is enough to find similar weeks without cheating.
 
 ### Work
-- implement premarket notes
-- implement live notes
-- implement post-session debrief
-- connect debrief outcomes back into bridge refinement
-- capture rejection reasons and failure modes
-
-### Why this phase matters
-Without debrief, the product becomes a memory toy.
-With debrief, it becomes a learning engine.
+- compare the canonical week against placebo and historical cases
+- use importance-weighted similarity, not flat feature matching
+- confirm the system ignores irrelevant differences
+- reject false positives that only resemble the surface pattern
 
 ### Exit condition
-Daily use improves the bridge library instead of just generating more clutter.
+The system can identify relevant analogs for the right reasons and reject bad ones for the right reasons.
 
 ---
 
-## Phase 5: narrow real-user validation
+## Phase 5: second seed week and contrast class
 
 ### Goal
-Test whether real traders get actual leverage from the loop.
+Expand only after Jan 7 logic is honest.
 
-### Suggested users
-- 1 to 3 serious discretionary traders
-- potentially one coach / mentor profile
-
-### Questions to validate
-- are surfaced candidates worth evaluating?
-- are analogs genuinely useful?
-- does this reduce manual burden?
-- does debrief quality improve?
-- does the trader feel more organized or just busier?
-
-### Exit condition
-At least some users say the product improves context, recall, or review enough that they would keep using it.
-
----
-
-## Phase 6: stock wedge exploration
-
-### Goal
-Test whether the framework scales into a broader stock workflow.
+### Candidate next week
+- week ending `2022-02-11`
 
 ### Work
-- define stock-compatible bridge families
-- choose initial stock universe
-- define catalyst taxonomy
-- adapt structural references where necessary
-- test discovery quality on stocks
+- reconstruct the second seed week using the same discipline
+- compare where the meta overlaps and diverges
+- refine the schema if the second week exposes missing structure
 
 ### Exit condition
-The product can surface stock candidates without collapsing into generic scanner sludge.
+The project can handle at least two distinct event-week classes without collapsing into label soup.
 
 ---
 
-## Suggested immediate next work
+## Immediate next work
 
-### Highest priority now
-1. define 5 to 10 starter bridge objects
-2. define candidate object and candidate states
-3. define similarity dimensions for analog retrieval
-4. decide how evidence and examples are stored
-
-### Nice to have later
-- richer charts
-- collaboration
-- coach workflows
-- broader scanning
-- automation around event ingestion
+1. improve viewer UX for human placebo grading
+2. human-grade the placebo pack
+3. tighten `scripts/evaluate_profile_features.py`
+4. test similarity logic against placebo and historical cases
+5. expand to Feb 11 only after Jan 7 is truly grounded
 
 ## What not to do yet
 
-Do not do these too early:
+Do not do these early:
 - broad stock scanning
-- broker integration
-- auto-execution ideas
-- performance dashboards as the center of the product
-- complex visual design before workflow clarity
+- generic bridge-library expansion
+- UX polish detached from validation needs
+- AI grading before human pass/fail exists
+- exaggerated claims about machine-detectable labels
 
 ## One-sentence roadmap summary
 
-v0 should prove that structured bridge memory plus analog retrieval plus debrief creates a better discretionary trading workflow.
+Pattern Bridge v0 should prove that a real ES event week can be reconstructed, abstracted into weekly meta, and distinguished from false analogs through placebo validation.

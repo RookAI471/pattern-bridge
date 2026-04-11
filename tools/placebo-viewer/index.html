@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Pattern Bridge Placebo Viewer</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background: #111; color: #eee; }
+    #chart { width: 100%; height: 520px; border: 1px solid #333; margin-top: 12px; }
+    select { font-size: 16px; padding: 6px; }
+    .muted { color: #aaa; margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <h1>Pattern Bridge Placebo Viewer</h1>
+  <label for="dataset">Dataset:</label>
+  <select id="dataset">
+    <option value="../../data/placebos/positive_placebo_a.json">Positive Placebo A</option>
+  </select>
+  <div class="muted" id="desc"></div>
+  <div id="chart"></div>
+
+  <script type="module">
+    import { createChart, CandlestickSeries } from 'https://unpkg.com/lightweight-charts@5/dist/lightweight-charts.production.mjs';
+
+    const chartEl = document.getElementById('chart');
+    const descEl = document.getElementById('desc');
+    const sel = document.getElementById('dataset');
+
+    const chart = createChart(chartEl, {
+      layout: { background: { color: '#111' }, textColor: '#ddd' },
+      grid: { vertLines: { color: '#222' }, horzLines: { color: '#222' } },
+      width: chartEl.clientWidth,
+      height: 520,
+      timeScale: { timeVisible: true, secondsVisible: false }
+    });
+    const series = chart.addSeries(CandlestickSeries, {
+      upColor: '#26a69a', downColor: '#ef5350', borderVisible: false,
+      wickUpColor: '#26a69a', wickDownColor: '#ef5350'
+    });
+
+    async function loadSelected() {
+      const path = sel.value;
+      const res = await fetch(path);
+      const data = await res.json();
+      descEl.textContent = data.description || '';
+      const candles = data.candles.map(c => ({
+        time: Math.floor(new Date(c.time).getTime() / 1000),
+        open: c.open, high: c.high, low: c.low, close: c.close,
+      }));
+      series.setData(candles);
+      chart.timeScale().fitContent();
+    }
+
+    sel.addEventListener('change', loadSelected);
+    loadSelected();
+    window.addEventListener('resize', () => chart.applyOptions({ width: chartEl.clientWidth }));
+  </script>
+</body>
+</html>
