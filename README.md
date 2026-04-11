@@ -2,7 +2,7 @@
 
 Pattern Bridge is a futures-market research project for **rare weekly structural analogs**.
 
-![Pattern Bridge main view](docs/images/pattern-bridge-main.png)
+![Pattern Bridge source pattern view](docs/images/pattern-bridge-source.jpg)
 
 ## What it is
 
