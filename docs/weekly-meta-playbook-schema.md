@@ -50,6 +50,7 @@ Each item should include:
 - `location`
 - `structural_consequence`
 - `why_it_matters`
+- optionally, a **signal-quality qualifier** when the event matters not just because of location, but because of auction quality, for example `poor TPO high`, `poor TPO low`, or other weak-structure details
 
 ### 4. Structural progression
 - `early_week_state`
@@ -93,6 +94,8 @@ Each item should include:
 - `what_must_match_for_analog`
 - `what_can_vary_without_breaking_the_analog`
 - `what_would_invalidate_comparison`
+- optionally, `analog_strength_notes`
+  - use this when a candidate week is a valid analog overall but weaker than the reference because it preserves the broad weekly logic without preserving the same signal quality
 
 ## Why this matters
 

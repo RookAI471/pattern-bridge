@@ -6,7 +6,7 @@ This framework tests whether the AI actually understands a weekly meta-playbook 
 
 The core question is:
 
-> If we create synthetic weeks that preserve or break the important weekly logic, can the AI correctly pass or fail them for the right reasons?
+> If we compare the canonical week against other carefully chosen weeks that preserve or break the important weekly logic, can the AI correctly pass or fail them for the right reasons?
 
 ## Why placebo weeks matter
 
@@ -20,6 +20,19 @@ Placebo weeks force a harder test:
 - the structure must be understood
 - not just recognized from memory
 
+## Source policy, current decision
+
+Use **real historical ES weeks first**.
+
+Why:
+- they preserve real auction texture automatically
+- they avoid fake-looking interpolated or filler bars
+- they make the validation more honest
+- we already have the historical data needed for this lane
+
+Synthetic/generated weeks are now demoted to a possible later research lane, not the primary validation method.
+Only revisit synthetic generation if we later need controlled perturbation after the real-week baseline is already working.
+
 ## Reference week
 
 Canonical reference:
@@ -27,11 +40,39 @@ Canonical reference:
 
 Core weekly meta to preserve or break:
 - important higher-timeframe location at a multi-week range high
-- Tuesday bikini failure at that important location
+- Tuesday PTPOH-driven bikini failure at that important location
+- Tuesday is the best trade of the week, despite occurring before the marquee catalysts
 - failure creates a new liquidation / operating area
 - FOMC confirms the new range and sets the weekly high
 - post-FOMC regime becomes range-dominant
 - Friday NFP is lower value for momentum, though potentially still useful for other expressions like 0DTE
+
+## Critical reminder
+
+FOMC and NFP are **catalysts**, not the essence of the analog.
+
+When screening candidates for this Jan 7 family, it is fine if one of those catalysts is present, but they should be treated as **unimportant unless the structure already matches**.
+
+A week does **not** qualify as a strong positive analog just because it shares the same news labels.
+The real comparison target is:
+- weekly profile logic
+- controlling higher-timeframe structure
+- signal quality at the important location
+- opportunity ranking across the week
+
+## Minimum structural screen
+
+If a candidate week does **not** do these three things, it is **not** the weekly setup we want:
+
+1. **Attempt to break above or below a prior well-defined range from previous weeks**
+2. **Fail to break**, preferably with a **poor TPO high or poor TPO low** signal at the failure point
+3. **Cleanly break the other side of the range**
+
+This is the minimum definition.
+
+After that, a **better** match is one where:
+- the market begins to establish a **new range**, not just continue trending
+- the latter portion of the week becomes more range-bound rather than extension-driven
 
 ## Test classes
 
@@ -48,6 +89,10 @@ Examples of acceptable variation:
 - slightly different intraday path shape
 - different exact price levels
 - different surface clutter that does not change the real weekly thesis
+
+Non-criteria by themselves:
+- shared catalyst labels like `FOMC` or `NFP`
+- superficial event-family overlap without the same weekly profile logic
 
 ### 3. Negative placebo weeks
 These should receive a **fail** from both a human and the AI.
@@ -87,19 +132,23 @@ We then compare:
 ### A week should PASS if
 It preserves the important weekly meta:
 - controlling HTF range-high context
-- early important failure at that context
+- attempt to break a well-defined prior multi-week range
+- meaningful failure at that location
+- preferably weak-auction quality at the failure point, for example a poor TPO high rather than a clean rejection wick
+- clean break of the opposite side of the range
 - creation of a new operating / liquidation area
-- event confirmation of the new range
-- post-event range-bound regime
+- better still, a new range begins to establish rather than the market simply continuing to trend
+- post-event or later-week regime becomes range-bound enough that the latter portion of the week is clearly lower-information than Tuesday
 - information economics roughly consistent with the reference week
 
 ### A week should FAIL if
 One or more of the important features is missing or reversed:
 - wrong controlling location
-- no meaningful early failure
-- no new range established
-- event confirms continuation rather than failed structure / new range
-- post-event regime wrong
+- no attempt to break a well-defined prior range
+- no meaningful failure at that range edge
+- no clean break of the opposite side of the range
+- no new range established, or the week simply trends instead
+- later-week regime wrong
 - opportunity ranking meaningfully different in a way that changes the weekly playbook
 
 ## What the AI must learn to ignore
@@ -136,7 +185,7 @@ Each placebo evaluation should be scored on:
 
 ## Immediate next step
 
-Create a small placebo pack:
+Create a small placebo pack using **real historical ES weeks**:
 - Positive Placebo A, close analog
 - Positive Placebo B, same meta with different irrelevant clutter
 - Negative Placebo A, similar early failure but wrong post-FOMC regime

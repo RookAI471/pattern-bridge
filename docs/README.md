@@ -27,6 +27,7 @@ The active question is whether AI can compare weeks based on the **important wee
 - `placebo-week-validation-framework.md`
 - `placebo-week-pack-v0.md`
 - `placebo-week-viewing-notes.md`
+- `full-history-structural-scan-2026-04-11.md`
 
 ## Older docs
 

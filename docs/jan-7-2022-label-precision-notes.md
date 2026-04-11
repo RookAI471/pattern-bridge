@@ -46,10 +46,14 @@ A day label cannot be assigned only from the final profile silhouette if the rea
 - whether the shape was sustained
 - whether the opposite side later broke
 - whether the day transitioned into a different structure late
+- whether the failure at the high or low showed **poor auction quality**, for example a poor TPO high rather than a clean wick rejection
 
 So for profile-based labels, the machine likely needs **both**:
 1. final profile geometry
 2. intraday structural sequence
+
+And for the Jan 7 family specifically, it may also need explicit weak-auction features such as:
+3. poor TPO high / poor TPO low quality
 
 Not just one.
 
@@ -70,7 +74,13 @@ not:
 
 Our current crude detector is too blunt because it is treating end-state geometry too loosely and ignoring sequence.
 
+It is also too loose if it treats any high-side failure as equivalent.
+For the canonical Jan 7 reference logic, Edward clarified that the quality of the Tuesday failure matters:
+- the high should read like a **poor TPO high / weak auction-quality high**
+- that weak high helps explain why the Tuesday failure is such an important signal and why that trade can outrank the rest of the week
+
 The next detector design needs to separate:
 - attempted shape formation
 - failed shape formation
 - completed shape formation
+- clean rejection highs/lows versus poor-auction highs/lows

@@ -17,15 +17,15 @@
 ## 3. Ranked key events
 
 ### Rank 1
-- `event`: Tuesday bikini failure at the multi-week range high
+- `event`: Tuesday PTPOH-driven bikini failure at the multi-week range high
 - `term_meaning`:
-  - an attempted Bikini structure that fails and transitions into a different structure rather than completing as a true Bikini
+  - an attempted Bikini structure that fails and transitions into a different structure rather than completing as a true Bikini, with the high-side signal strengthened by **poor TPO high (PTPOH) / weak auction-quality at the high**
 - `location`:
   - top of the multi-week rectangular range
 - `structural_consequence`:
   - the failure breaks the market back into a new liquidation area
 - `why_it_matters`:
-  - this is the first and most important clue that the prior higher-timeframe location failed and the week’s regime is changing
+  - this is the first and most important clue that the prior higher-timeframe location failed and the week’s regime is changing, and the PTPOH detail helps explain why Tuesday is a better signal than a generic failed high
 
 ### Rank 2
 - `event`: Wednesday FOMC Min inverse P liq
@@ -79,7 +79,7 @@
 
 ## 7. Opportunity ranking
 - `best_trade_of_week`:
-  - Tuesday high long-break attempt failure followed by the **immediate pivot to short the sweep / break of the low**
+  - Tuesday high long-break attempt failure, specifically a **PTPOH / weak-high failure**, followed by the **immediate pivot to short the sweep / break of the low**
 - `second_best_trade`:
   - FOMC, especially after the high fails
 - `lowest_value_trade_window`:
@@ -115,6 +115,7 @@
 - `what_must_match_for_analog`:
   - meaningful higher-timeframe location
   - early important failure at that location
+  - if Tuesday is meant to carry the same top-ranked signal quality, the failure should also express comparable **poor TPO high / weak-auction high** behavior
   - creation of a new operating / liquidation area
   - major event confirming the new weekly range
   - post-event regime shift into range-dominant behavior

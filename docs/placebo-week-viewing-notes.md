@@ -2,26 +2,25 @@
 
 ## Current state
 
-The placebo weeks in `placebo-week-pack-v0.md` are currently **narrative specs**, not full synthetic OHLC time series.
+The placebo weeks in `placebo-week-pack-v0.md` began as narrative specs.
 
-That means Edward cannot truly "view" them yet as market weeks, because there are no bar sequences to render.
+We also tested a synthetic-bar rendering path, and it was not good enough. The charts became dense but visually fake, which made the comparison less trustworthy, not more.
+
+Current decision:
+- the next viewing lane should use **real historical ES weeks first**
+- the viewer should present those real weeks as the placebo candidates
 
 ## What is needed to view a placebo week
 
-A placebo week needs to be converted into a synthetic bar dataset, at minimum:
-- timestamp
-- open
-- high
-- low
-- close
+For the current phase, a placebo week should be shown as a **real historical 30-minute ES week** with the right multi-week context window.
 
-For a first pass, we do **not** need perfect 30-minute realism.
-We need a structurally faithful week sketch that preserves:
-- higher-timeframe location
-- Tuesday failure logic
-- FOMC weekly-high logic
-- post-FOMC range establishment
-- Friday lower-value chop
+That means the job is:
+- choose the right real historical candidate weeks
+- document why each is positive or negative
+- load them into the viewer on the same footing as the canonical week
+- let Edward visually inspect and grade them
+
+Only later, if needed, should we revisit fully synthetic generation.
 
 ## Charting tool
 
@@ -38,10 +37,10 @@ So the workflow is:
 
 Create:
 - a simple browser viewer using Lightweight Charts
-- one or more synthetic placebo datasets in JSON
+- one or more **real historical placebo week datasets** in JSON
 - enough viewing controls to compare:
   - the canonical real week
-  - Positive Placebo A
-  - Positive Placebo B
-  - Negative Placebo A
-  - Negative Placebo B
+  - Positive Placebo A candidate
+  - Positive Placebo B candidate
+  - Negative Placebo A candidate
+  - Negative Placebo B candidate
