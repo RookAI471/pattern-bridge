@@ -2,7 +2,10 @@
 
 Pattern Bridge is a futures-market research project for **rare weekly structural analogs**.
 
-![Pattern Bridge source pattern view](docs/images/pattern-bridge-source.jpg)
+<p align="center">
+  <img src="docs/images/es-jan7-main.png" alt="ES Jan 7 primary pattern view" width="49%" />
+  <img src="docs/images/es-jan7-5min.png" alt="ES Jan 7 five-minute view" width="49%" />
+</p>
 
 ## What it is
 
