@@ -1,40 +1,52 @@
 # Pattern Bridge
 
-Pattern Bridge is an AI-assisted research project for **ES weekly context and analog matching**.
+Pattern Bridge is an AI-assisted research project for **rare weekly structural analogs** in futures markets.
 
-Current focus:
-- **ES only**
-- **weekly event archetypes**
-- especially **FOMC**, **FOMC + NFP**, and related event weeks
-- proving whether AI can compare weeks based on the **important weekly meta**, not just labels or visual resemblance
+## Current conclusion
 
-## What this is
+We are no longer just looking for whether a Jan 7-style family might exist.
 
-This repo is no longer centered on building a broad ontology of generic pattern bridges.
+Current evidence says it **does** exist as a **rare, high-specificity structural family**.
 
-The current job is narrower and more honest:
-- reconstruct known canonical ES weeks from machine-legal inputs
-- represent the weekly meta that actually matters
-- test whether similar weeks can be detected without cheating
-- validate that with human-graded placebo weeks before claiming anything real
+What has changed:
+- this is **not** being treated as a broad weekly label taxonomy anymore
+- this is **not** being selected by shared catalysts like FOMC or NFP anymore
+- this **is** being treated as a structure-first analog problem anchored to real 30-minute price history
+
+The working family definition is now:
+1. attempt to break above or below a prior well-defined multi-week range
+2. fail at that edge, ideally with weak-auction quality such as PTPOH / PTPOL
+3. cleanly break the other side of the range
+4. stronger match if the market then begins to establish a **new range** instead of simply continuing to trend
 
 In plain English, the product direction is:
-- help a trader remember the important higher-timeframe context
-- compare the current week to prior event weeks that actually matter
+- help a trader remember rare but important weekly structural families
+- compare the current week to prior real weeks that actually match the structure
 - identify what is structurally important versus cosmetic noise
 - support regime/context review, not fake-precision execution
 
-## What we are trying to prove
+## What this repo is now
 
-The core research question is:
+This repo is no longer centered on a broad ontology of generic pattern bridges.
 
-> Can AI distinguish a genuinely similar ES event week from a superficially similar one, using the right higher-timeframe context and weekly logic?
+The current job is narrower and more grounded:
+- reconstruct canonical weeks from machine-legal intraday data
+- represent the weekly meta that actually matters
+- search full price history for structurally similar weeks
+- separate real analogs from false cousins
+- validate those findings with human review before making stronger claims
 
-That means proving, in order:
-1. a canonical real week can be reconstructed from actual intraday data
-2. the important weekly meta can be represented explicitly
-3. positive and negative placebo weeks can be human-graded honestly
-4. AI can later pass or fail those weeks for the right reasons
+## What we have actually shown so far
+
+The current claim is no longer just:
+- "maybe there is a pattern here"
+
+It is:
+- there appears to be a **real but rare structural family**
+- the hard part is not finding reversals
+- the hard part is finding the subset that then **settles into a new range**
+
+That is the intelligence layer Pattern Bridge is trying to model.
 
 ## Current reference weeks
 
@@ -45,21 +57,47 @@ Secondary seed / contrast week:
 - **Week ending 2022-02-11**
 
 Locked ranked key events for the canonical Jan 7 week:
-1. Tuesday bikini failure at the multi week range high
+1. Tuesday PTPOH-driven bikini failure at the multi week range high
 2. Wednesday FOMC Min inverse P liq
 3. Friday NFP bikini chop at poor TPOL
+
+## Markets explored so far
+
+### Primary anchor market
+- **ES** remains the canonical anchor market and the main validation lane.
+
+### Cross-market exploratory scan completed
+The current structural family has already been explored across:
+- **ES**
+- **CL**
+- **BP**
+- **FV**
+- **JY**
+- **NQ**
+- **EU**
+- **GC**
+- **US**
+- **TY**
+
+### Current takeaways by market
+- **ES**: rare but real under the current scan. Strongest current range-establishing hit is **2016-11-11**.
+- **CL**: strongest non-ES market so far. Strongest current range-establishing hit is **2011-05-06**.
+- **BP** and **FV**: exploratory hits justify later inspection.
+- **JY, NQ, EU, GC, US, TY**: explored at first-pass structural-scan level, but not yet priority follow-up lanes.
 
 ## Key modeling rules
 
 - **Daily bars are not enough** for honest validation.
-- Use **ES intraday 30-minute data** as the primary substrate.
+- Use **30-minute futures data** as the working substrate.
+- **ES** remains the canonical anchor, but the structural family can be explored cross-market.
 - Do not assume discretionary labels are automatically machine-definable.
 - Start with **Market Profile / price structure first**, labels second.
 - Preserve Edward's exact term meanings.
 - Do not conflate:
   - `2022-01-04` = `bikini_failure`
   - `2022-01-07` = `true_bikini`
-- The value is in **weekly meta and controlling context**, not recreating every handwritten chart note mechanically.
+- Treat **FOMC** and **NFP** as catalysts, not as the core selection logic for analogs.
+- The value is in **weekly meta, controlling context, and later range-establishment**, not recreating every handwritten chart note mechanically.
 
 ## Current repo structure
 
@@ -89,26 +127,32 @@ Locked ranked key events for the canonical Jan 7 week:
 Current status is no longer “broad product exploration.”
 
 It is:
-- **narrow ES weekly-context validation**
+- **rare weekly structural-family validation**
+- **ES anchor, cross-market exploratory follow-through**
 - **real-data reconstruction first**
-- **placebo validation second**
+- **mechanical screening plus human review**
 - **AI grading only after human grading**
 
 Recent progress:
 - canonical Jan 7 week documented more precisely
-- weekly meta object defined
-- placebo validation framework written
-- first placebo pack created
+- weekly meta object defined and tightened around PTPOH / weak-high nuance
+- placebo validation framework rewritten around structure-first rules
+- catalyst-led candidate picking explicitly rejected
+- synthetic filler-bar placebo generation explicitly rejected
+- full-history sequence-aware price scan run on ES and across 9 additional markets
+- ES and CL both produced a stronger range-establishing hit under the current scan
 - multi-week context viewer served through the Track B lane for human review
 - profile-feature detector started, but still crude and in need of tightening
 
 ## Immediate next steps
 
-1. clean up the viewer UX so the evaluation week is obvious
-2. human-grade the placebo pack
-3. test AI pass/fail reasoning against those grades
-4. tighten the profile / Market Profile detector logic
-5. expand to the Feb 11, 2022 contrast week only after Jan 7 logic is grounded
+1. inspect success vs near-miss weeks side by side
+   - ES: `2016-11-11` vs `2022-12-16`
+   - CL: `2011-05-06` vs `2012-05-04` and `2025-04-04`
+2. improve the sequence-aware scan with better tempo and range-establishment logic
+3. build stronger PTPOH / PTPOL and weak-auction proxies
+4. revisit BP and FV after ES/CL discriminators are clearer
+5. only then expand the family map further or revisit Feb 11 as a contrast class
 
 ## Anti-goals
 
